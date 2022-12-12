@@ -70,6 +70,7 @@ Express.prototype.init = function (params) {
 
     })
 };
+
 Express.prototype.notFoundIntercept = function (req, res) {
     res.setHeader('Content-type', 'application/json;charset=utf-8');//设置响应头
     (req.method !== 'OPTIONS') && (res.statusCode = 404);
