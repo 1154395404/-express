@@ -10,6 +10,12 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 })
+app.get('/', (req, res) => {
+    res.sendFile('./static/index.html');
+})
+app.get('/getReactIcon', (req, res) => {
+    res.sendFile('./static/img/react.gif');
+})
 app.get('/api/getList', (req, res) => {
     // res.setHeader('Content-type','text/html')
     res.send(req.query)
@@ -23,10 +29,10 @@ app.get('/api/sendQueryGet', (req, res) => {
 })
 app.post('/api/xixi', (req, res) => {
 
-        res.send({
-            status: 200,
-            data:req.body
-        })
+    res.send({
+        status: 200,
+        data: req.body
+    })
     // console.log(req.body)
 })
 app.get('/api/xiaomi', async (req, res) => {

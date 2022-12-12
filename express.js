@@ -1,4 +1,5 @@
 const http = require('http');
+const fs = require('fs');
 const querystring = require("querystring");
 
 
@@ -38,12 +39,18 @@ Express.prototype.on = function () {
 };
 Express.prototype.init = function () {
     this.server = http.createServer();//创建 http服务
-    //添加 res.send 方法
+
     this.use((req, res, next) => {
+        //添加 res.send 方法
         res.send = function (data) {
             res.statusCode = 200;
             res.write(typeof data === 'string' ? data : JSON.stringify(data));
             res.end();//写完之后一定要结束 关闭连接
+        };
+        //添加 res.sendFile 方法
+        res.sendFile = function (filePath) {
+            const readStream=fs.createReadStream(filePath);
+            readStream.pipe(res)
         };
         next();
     });
