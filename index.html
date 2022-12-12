@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="getYouPin">get xiaomi you pin</button>
+<button id="sendPost">post</button>
+<button id="sendErrorGet">errorGet</button>
+<button id="sendQueryGet">sendQueryGet</button>
+<script>
+    document.querySelector('#getYouPin').onclick = async function () {
+
+        const response = await fetch('http://localhost:3001/api/xiaomi')
+        const data =await response.json()
+        console.log(data)
+    }
+    document.querySelector('#sendErrorGet').onclick = async function () {
+
+
+        try {
+            const response = await fetch('http://localhost:3001/api/ddddd?dd=2&gg=8')
+            const data =await response.json()
+            console.log('data',data)
+        }catch (e) {
+            console.log('e',e)
+        }
+
+    }
+    document.querySelector('#sendQueryGet').onclick = async function () {
+
+
+        try {
+            const response = await fetch(`http://localhost:3001/api/sendQueryGet?dd=2&gg=8&date=${Date.now()}&random=${Math.random()}`)
+            const data =await response.json()
+            console.log('data',data)
+        }catch (e) {
+            console.log('e',e)
+        }
+
+    }
+    document.querySelector('#sendPost').onclick = async function () {
+
+        const response = await fetch('http://localhost:3001/api/xixi',{
+            method:'post',
+            body:JSON.stringify({username:'444',password:'1523'}),
+            headers:{
+                'Content-Type':'application/json'
+            }
+        })
+        try {
+            const data =await response.json()
+            console.log('data',data)
+        }catch (e) {
+            console.log('e',e)
+        }
+
+
+    }
+</script>
+</body>
+</html>
