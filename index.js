@@ -3,11 +3,12 @@ const postRequest = require('./postRequest')
 const app = new Express();
 
 
-app.use((req, res) => {
+app.use((req, res, next) => {
     //res.headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', '*');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+    next();
 })
 app.get('/api/getList', (req, res) => {
     // res.setHeader('Content-type','text/html')
@@ -21,12 +22,11 @@ app.get('/api/sendQueryGet', (req, res) => {
     // console.log('hello getUser');
 })
 app.post('/api/xixi', (req, res) => {
-    req.getBody.then((data) => {
+
         res.send({
             status: 200,
-            data
+            data:req.body
         })
-    })
     // console.log(req.body)
 })
 app.get('/api/xiaomi', async (req, res) => {
@@ -54,6 +54,3 @@ app.listen(3001, () => {
     console.log('running 3001');
 })
 
-function useQuery() {
-
-}
