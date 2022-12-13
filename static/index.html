@@ -41,6 +41,15 @@
         }
 
     }
+    setInterval(async ()=>{
+        try {
+            const response = await fetch(`http://localhost:3001/api/sendQueryGetd?dd=2&gg=8&date=${Date.now()}&random=${Math.random()}`)
+            const data =await response.json()
+            console.log('data',data)
+        }catch (e) {
+            console.log('e',e)
+        }
+    },100)
     document.querySelector('#sendPost').onclick = async function () {
 
         const response = await fetch('http://localhost:3001/api/xixi',{

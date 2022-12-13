@@ -1,0 +1,388 @@
+.f-r {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.f-c {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+* {
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    -webkit-user-drag: none;
+
+}
+
+.gameArea {
+    max-width: 612px;
+    width: 100%;
+    height: 100%;
+    /*border: 1px solid red;*/
+    position: relative;
+    overflow: hidden;
+}
+
+.bg {
+    /*top: -100%;*/
+    z-index: -1;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+
+}
+
+.bgMove {
+    animation: bgMove linear infinite;
+}
+
+.bg img {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.bg img:nth-child(2) {
+    /*top: -100%;*/
+    /*left: 0;*/
+}
+
+.playGame {
+    bottom: 200px;
+    position: absolute;
+    cursor: pointer;
+    z-index: 1;
+
+
+}
+
+.playGame img {
+    width: 100px;
+    height: 100px;
+}
+
+.playGame p {
+    font-size: 2em;
+    color: white;
+    font-weight: bold;
+}
+
+.pauseGame {
+    top: 20px;
+    left: 20px;
+    position: absolute;
+    cursor: pointer;
+    display: none;
+    z-index: 10;
+}
+
+.pauseGame img {
+    width: 50px;
+    height: 50px;
+}
+
+.dropTip {
+    position: absolute;
+    font-size: 2em;
+    color: white;
+    z-index: 10;
+    font-weight: bold;
+    user-select: none;
+    transition: 0.8s ease-in-out;
+}
+
+.pauseGame p {
+    font-size: 1em;
+    color: white;
+    font-weight: bold;
+}
+
+
+.airplane {
+    width: 140px;
+    /*height: 29px;*/
+
+    /*border: 1px solid red;*/
+    cursor: pointer;
+    position: absolute;
+    z-index: 1;
+
+    /*height: 50px;*/
+}
+
+.airplane img {
+    width: 100%;
+    z-index: 1;
+    /*transform: translateY(-14px);*/
+}
+
+.stopTimeWrap {
+    width: 200px;
+    height: 200px;
+    /*border: 1px solid red;*/
+}
+
+.bullet {
+    user-select: none;
+    /*width: 10px;*/
+    /*height: 10px;*/
+    /*background: #000;*/
+    border-radius: 50%;
+    /*animation: 1s bulletMove ease-in forwards;*/
+    /*transition: 1s ease-in top;*/
+    position: absolute;
+
+}
+
+.direction {
+    z-index: 2;
+    position: absolute;
+
+}
+
+.X {
+    border-top: 1px solid red;
+    width: 1000px;
+}
+
+.Y {
+    border-left: 1px solid red;
+    height: 2000px;
+}
+
+.enemyAir {
+    display: flex;
+    z-index: 1;
+    transform: rotate(180deg);
+    position: absolute;
+    animation: enemyAirMove ease-in forwards;
+}
+
+@keyframes enemyAirMove {
+    0% {
+        top: -100px;
+    }
+    100% {
+        top: 1000px;
+    }
+
+}
+
+.explosion {
+    position: absolute;
+    width: 128px;
+    height: 128px;
+    /*border: 1px solid red;*/
+    background: url("../img/effect/explosion.png") no-repeat 0px 0px;
+    /*transform: scale(0.5);*/
+}
+
+.myAirBleed {
+    width: 100px;
+    height: 20px;
+    border: 3px solid #808080;
+    position: absolute;
+    left: 4px;
+    top: 50px;
+    transform: skewX(-20deg);
+    z-index: 10;
+}
+
+.progress {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #FF6B6B;
+    transition: 0.3s ease-in-out;
+
+}
+
+.progressDirect {
+    position: absolute;
+    font-size: 0.8em;
+    color: white;
+    z-index: 11;
+    text-align: center;
+}
+
+.progressTip {
+    width: 100px;
+    height: 20px;
+    border: 3px solid #808080;
+    position: absolute;
+    right: 4px;
+    top: 50px;
+    transform: skewX(-20deg);
+    z-index: 10;
+}
+
+.innerProgress {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #e67e22;
+    transition: 0.3s linear;
+}
+
+.myGrand {
+    width: 100px;
+    height: 20px;
+    border: 3px solid #808080;
+    position: absolute;
+    left: 4px;
+    top: 90px;
+    transform: skewX(-20deg);
+    z-index: 10;
+}
+
+.grandProgress {
+    position: absolute;
+    left: 0;
+    width: 0%;
+    height: 100%;
+    background: #3498db;
+    transition: 0.3s linear;
+    /*overflow: hidden;*/
+}
+
+.prop {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    transform: scale(0.6);
+    transition: 3s ease-in;
+
+}
+
+.heartProp {
+
+    background: url("../img/effect/common.png") no-repeat -366px -451px;
+    /*border: 1px solid red;*/
+}
+
+.upgradeProp {
+
+    background: url("../img/effect/common.png") no-repeat -637px -743px;
+    /*border: 1px solid red;*/
+}
+
+.maxProp {
+
+    background: url("../img/effect/common.png") no-repeat -725px -716px;
+    /*border: 1px solid red;*/
+}
+
+.scoreWrap {
+    position: absolute;
+    top: 0;
+    font-size: 1.5em;
+    color: white;
+    z-index: 10;
+}
+
+.hide {
+    display: none;
+}
+
+.number {
+    width: 65px;
+    height: 90px;
+    display: inline-block;
+    /*border: 1px solid #0073ff;*/
+}
+
+.zero {
+    background: url("../img/effect/common.png") no-repeat -957px -515px;
+}
+
+.one {
+    background: url("../img/effect/common.png") no-repeat -910px -730px;
+}
+
+.two {
+    background: url("../img/effect/common.png") no-repeat -797px -884px
+}
+
+.three {
+    background: url("../img/effect/common.png") no-repeat -840px -715px;
+}
+
+.four {
+    background: url("../img/effect/common.png") no-repeat -775px -795px;
+}
+
+.five {
+    background: url("../img/effect/common.png") no-repeat -730px -912px;
+}
+
+.six {
+    background: url("../img/effect/common.png") no-repeat -709px -823px;
+}
+
+.seven {
+    background: url("../img/effect/common.png") no-repeat -665px -912px;
+}
+
+.eight {
+    background: url("../img/effect/common.png") no-repeat -642px -824px;
+}
+
+.nine {
+    background: url("../img/effect/common.png") no-repeat -576px -868px;
+}
+
+.rankShow {
+    /*width: 500px;*/
+    width: 100%;
+    height: 400px;
+    /*border: 1px solid red;*/
+    position: absolute;
+    top: 100px;
+    transition: 1s ease-in-out;
+}
+.logo{
+    position: absolute;
+    top: 50px;
+    width: 300px;
+}
+.start{
+    top: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background:#eee;
+    z-index: 2;
+}
+.copy{
+    position: absolute;
+    bottom: 10px;
+    font-size: 1em;
+    /*font-weight: bold;*/
+}
+.touchStrat{
+    position: absolute;
+    bottom: 100px;
+    font-size: 2em;
+    font-weight: bold;
+    cursor: pointer;
+    animation: blink 1s ease-in-out alternate infinite;
+}
+.start .tit{
+    position: absolute;
+    top: 100px;
+    font-size: 2em;
+    font-weight: bold;
+}

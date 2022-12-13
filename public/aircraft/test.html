@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .outer {
+            width: 128px;
+            height: 128px;
+            border: 1px solid red;
+            background: url("img/effect/explosion.png") no-repeat 0px 0px;
+            /*transform: scale(0.5);*/
+        }
+
+
+        .tool {
+            width: 80px;
+            height: 80px;
+            background: url("img/effect/common.png") no-repeat -735px -512px;
+            /*background: url("img/effect/common.png") no-repeat 0px 0px;*/
+            border: 1px solid red;
+        }
+
+        .tool2 {
+            width: 80px;
+            height: 80px;
+            background: url("img/effect/common.png") no-repeat -366px -451px;
+            border: 1px solid red;
+        }
+
+        .tool3 {
+            width: 80px;
+            height: 80px;
+            background: url("img/effect/common.png") no-repeat -637px -743px;
+            border: 1px solid red;
+        }
+
+        .tool4 {
+            width: 80px;
+            height: 80px;
+            background: url("img/effect/common.png") no-repeat -725px -716px;
+            border: 1px solid red;
+        }
+
+        .number {
+            width: 65px;
+            height: 90px;
+            display: inline-block;
+            /*border: 1px solid #0073ff;*/
+        }
+
+        .zero {
+            background: url("img/effect/common.png") no-repeat -957px -515px;
+        }
+        .one{
+            background: url("img/effect/common.png") no-repeat -910px -730px;
+        }
+        .two{
+            background: url("img/effect/common.png") no-repeat -797px -884px
+        }
+        .three{
+            background: url("img/effect/common.png") no-repeat -840px -715px;
+        }
+        .four{
+            background: url("img/effect/common.png") no-repeat -775px -795px;
+        }
+        .five{
+            background: url("img/effect/common.png") no-repeat -730px -912px;
+        }
+        .six{
+            background: url("img/effect/common.png") no-repeat -709px -823px;
+        }
+        .seven{
+            background: url("img/effect/common.png") no-repeat -665px -912px;
+        }
+        .eight{
+            background: url("img/effect/common.png") no-repeat -642px -824px;
+        }
+        .nine{
+            background: url("img/effect/common.png") no-repeat -576px -868px;
+        }
+    </style>
+</head>
+<div class="outer">
+    <!--  <img src="img/effect/explosion.png" alt="">-->
+</div>
+<div class="outer1">
+    <!--  <img src="img/effect/explosion.png" alt="">-->
+</div>
+<div class="tool"></div>
+<div class="tool2"></div>
+<div class="tool3"></div>
+<div class="tool4"></div>
+<img src="img/effect/particle.png" alt="">
+
+<div class="zero number"></div>
+<div class="one number"></div>
+<div class="two number"></div>
+<div class="three number"></div>
+<div class="four number"></div>
+<div class="five number"></div>
+<div class="six number"></div>
+<div class="seven number"></div>
+<div class="eight number"></div>
+<div class="nine number"></div>
+
+<body>
+<script>
+
+    const adventureAirSrc = 'img/enemy/air/adventure';
+    const sweetAirSrc = 'img/enemy/air/sweet';
+    const j20AirSrc = 'img/enemy/air/jjj';
+    const skyAirSrc = 'img/enemy/air/sky';
+    var arr = [adventureAirSrc, sweetAirSrc, skyAirSrc];
+    for (let i = 0; i < 3; i++) {
+        for (let j = 1; j <= 4; j++) {
+            let img = document.createElement('img');
+            img.src = arr[i] + '/' + j + '.png';
+            document.getElementsByTagName('body')[0].append(img);
+
+        }
+    }
+
+
+    function fairyImgAnimation(dom, wOffset, hOffset, wCount, hCount, delay, callBack) {
+        var count = 0;
+        callBack && callBack();
+        for (let i = 0; i < hCount; i++) {
+            for (let j = 0; j < wCount; j++) {
+                setTimeout(function () {
+                    console.log()
+                    dom.style.backgroundPositionX = -j * wOffset + 'px'
+                    dom.style.backgroundPositionY = -i * hOffset + 'px';
+                }, delay * count);
+                count++;
+            }
+        }
+    }
+
+
+    function randomCreatePlane(airRank) {
+        let num = getRandomInteger(0, parseInt(airRank / 4));
+        return num > 4 ? 4 : num;
+    }
+
+    function getRandomInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+
+    fairyImgAnimation(document.getElementsByClassName('outer')[0], 128, 128, 4, 5, 50);
+
+    let timer = setTimeout(function () {
+        console.log('sss');
+    }, 2000)
+
+
+</script>
+</body>
+</html>

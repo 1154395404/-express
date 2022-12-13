@@ -1,11 +1,10 @@
 const http = require('http');
 const fs = require('fs');
 const querystring = require("querystring");
+const path = require("path");
 
 
-function getAbsoluteUrl(originUrl) {
-    return originUrl.split('?')[0];
-}
+// function
 
 function Express() {
     this.server = null;
@@ -19,10 +18,15 @@ function Express() {
     this.on();
 }
 
+Express.utlis = {};
+Express.utlis.getAbsoluteUrl = function (originUrl) {
+    return originUrl.split('?')[0];
+}
+
 Express.prototype.on = function () {
     // http on
     this.server.on('request', async (req, res) => {
-        const url = getAbsoluteUrl(req.url);
+        const url = Express.utlis.getAbsoluteUrl(req.url);
         const {method} = req
         // 当所有中间件 都通过时时  响应 api 路由回调函数
         await Promise.all(this.middleWares.map((callback) => new Promise((resolve) => {
@@ -49,21 +53,19 @@ Express.prototype.init = function () {
         };
         //添加 res.sendFile 方法
         res.sendFile = function (filePath) {
-            const readStream=fs.createReadStream(filePath);
-            readStream.pipe(res)
+            // console.log(filePath)
+            // 应该添加响应头
+            try {
+                const readStream = fs.createReadStream(filePath);
+                readStream.pipe(res)
+            } catch (e) {
+                console.log(e)
+            }
         };
         next();
     });
     //添加 拦截query参数
     this.use((req, res, next) => {
-        // const query = {};
-        // const queryString = req.url.split('?')[1] || '';
-        // const queryArray = queryString.split('&');
-        // queryArray.forEach((ownQueryString) => {
-        //   const key = ownQueryString.split('=')[0] ;
-        //   const value = ownQueryString.split('=')[1] ;
-        //   query[key]=value
-        // });
         req.query = querystring.parse(req.url.split('?')[1] || '')
         next();
     });
@@ -86,7 +88,8 @@ Express.prototype.notFoundIntercept = function (req, res) {
     (req.method !== 'OPTIONS') && (res.statusCode = 404);
     res.write(JSON.stringify({
         status: 404,
-        msg: '资源未找到'
+        msg: '资源未找到',
+        data: {}
     }));
     res.end()
 };
@@ -96,12 +99,20 @@ Express.prototype.get = function (route, callback) {
 Express.prototype.post = function (route, callback) {
     this.apiMapRouter['POST'][route] = callback;
     this.apiMapRouter['OPTIONS'][route] = (req, res) => {
-        res.send({code: 200, msg: '预检请求成功'})
+        res.send({code: 200, msg: '预检请求成功', data: {}})
     };
 };
 Express.prototype.use = function (callback) {
-
     this.middleWares.push(callback);
+};
+Express.prototype.static = function (route, dirName) {
+    this.use((req, res, next) => {
+        route === '/' && (route = '//')
+        const absolutePath = Express.utlis.getAbsoluteUrl(req.url);
+        const availablePath = absolutePath.split(route).join('');
+        const filePath = path.join(dirName, availablePath)
+        filePath.includes('.') && fs.existsSync(filePath) ? res.sendFile(filePath) : next()
+    })
 };
 Express.prototype.listen = function (port, callback) {
     // http listen

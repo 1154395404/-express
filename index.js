@@ -1,7 +1,7 @@
 const Express = require("./express");
 const postRequest = require('./postRequest')
+const path = require("path");
 const app = new Express();
-
 
 app.use((req, res, next) => {
     //res.headers
@@ -10,6 +10,9 @@ app.use((req, res, next) => {
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
     next();
 })
+app.static('/',path.resolve(__dirname,'public'))
+app.static('/static',path.resolve(__dirname,'static'))
+
 app.get('/', (req, res) => {
     res.sendFile('./static/index.html');
 })

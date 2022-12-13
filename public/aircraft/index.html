@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en" style="overflow: hidden">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+
+    <title>Aircraft Wars</title>
+    <link rel="stylesheet" href="style/animation.css">
+    <link rel="stylesheet" href="style/index.css">
+    <script src="js/configJson.js"></script>
+
+</head>
+<body>
+<div class="gameArea f-c">
+    <div class="start f-c " >
+        <p class="tit">Aircraft Wars</p>
+        <img src="img/intro/ui_jiesuanxiaoshimei.png" alt="">
+
+        <p class="touchStrat">轻触此处开始</p>
+        <p class="copy">Design by 小军  22-02-15</p>
+    </div>
+    <img src="img/bg/img_bg_logo.jpg" style="width: 100%;height: 100%;position: absolute;top: 0;z-index: 0" alt=""  class="bgLogo">
+<!--    <img src="img/bg/dy1.jpg" style="width:100%;height:100%;position: absolute;top: 0;z-index: 0" alt=""  class="bgLogo">-->
+    <img src="img/icon/LOGO.png" class="logo" alt="">
+    <div class="playGame f-c">
+        <img src="img/icon/play.png" alt="">
+        <p>开始游戏</p>
+    </div>
+    <div class="pauseGame f-c">
+        <img src="img/icon/pause.png" alt="">
+        <p>暂停</p>
+    </div>
+    <div class="stopTimeWrap f-r">
+        <img src="" alt="">
+    </div>
+    <div class="airplane f-r" style="display: none">
+<!--        <div class="direction X"></div>-->
+<!--        <div class="direction Y"></div>-->
+        <img src="img/air/myAir.png" draggable="false" alt="">
+
+    </div>
+
+    <div class="bg" draggable="false">
+<!--        <img src="img/bg/img_bg_level_2.jpg" draggable="false" alt="">-->
+<!--        <img src="img/bg/img_bg_level_2.jpg" draggable="false" alt="">-->
+        <img src="img/bg/bg1.jpg" draggable="false" alt="">
+        <img src="img/bg/bg1.jpg" draggable="false" alt="">
+
+    </div>
+    <div class="myAirBleed f-r hide">
+        <div class="progress " data-bleed="100">
+
+        </div>
+        <span class="progressDirect">100%</span>
+    </div>
+    <div class="myGrand f-r hide">
+        <div class="grandProgress ">
+
+        </div>
+        <span class="progressDirect">等级</span>
+    </div>
+    <div class="progressTip f-r" style="display: none">
+        <div class="innerProgress ">
+        </div>
+        <span class="progressDirect">无敌时间</span>
+    </div>
+    <div class="scoreWrap f-r hide" >
+        <span>分数:</span>
+        <span class="score">0</span>
+    </div>
+
+    <div class="rankShow f-c">
+
+    </div>
+
+
+</div>
+<audio src="audio/stopTime.mp3" class="replacedAudio"></audio>
+<audio src="audio/startBg.ogg" autoplay loop class="bgAudio"></audio>
+<audio src="audio/biu.mp3" class="bulletAudio"></audio>
+<audio src="audio/bgm_cunshiqujinbi.ogg" class="chongci"></audio>
+<audio src="" class="explosionAudio"></audio>
+<script src="js/main.js"></script>
+</body>
+</html>
